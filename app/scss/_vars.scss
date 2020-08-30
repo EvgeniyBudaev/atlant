@@ -1,0 +1,24 @@
+$text: #302e2f;
+$red: #931733;
+$black: #302e2f;
+$white: #fff;
+$gray: #c2c3c4;
+$orange: #f08e0f;
+$grayLine: #cccbcc;
+
+@mixin f300 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 300;
+}
+
+@mixin f400 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+}
+
+
+@mixin f600 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+}
+

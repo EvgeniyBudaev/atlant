@@ -1,0 +1,69 @@
+@font-face {
+  font-family: "Oswald-Regular";
+src: url("./app/fonts/Oswald-Regular.woff") format("woff"), /* Modern Browsers */
+url("./app/fonts/Oswald-Regular.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Condensed', sans-serif;
+  src: url('../fonts/RobotoCondensed-Light.woff2') format('woff2'),
+    url('../fonts/RobotoCondensed-Light.woff') format('woff');
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Oswald-SemiBold', sans-serif;
+  src: url('../fonts/Oswald-SemiBold.woff2') format('woff2'),
+    url('../fonts/Oswald-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'VideoJS';
+  src: url('https://vjs.zencdn.net/f/1/vjs.eot');
+  src: url('https://vjs.zencdn.net/f/1/vjs.eot?#iefix') format('embedded-opentype'),
+  url('https://vjs.zencdn.net/f/1/vjs.woff') format('woff'),
+  url('https://vjs.zencdn.net/f/1/vjs.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src: url('../fonts/icomoon.eot');
+  src: url('../fonts/icomoon.eot') format('embedded-opentype'),
+    url('../fonts/icomoon.woff') format('woff'),
+    url('../fonts/icomoon.ttf') format('truetype'),
+    url('../fonts/icomoon.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^='icon-'],
+[class*=' icon-'] {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-pencil-square:before {
+  content: '\f044';
+}
+
+.icon-angle-left:before {
+  content: '\f104';
+}
+
+.icon-angle-right:before {
+  content: '\f105';
+}
+

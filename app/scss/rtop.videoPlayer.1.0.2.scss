@@ -1,0 +1,523 @@
+/* colors */
+$highlight: #ed1c24;
+$default: #fff;
+
+/* sizes */
+$tablet: 768px;
+$desktop: 1024px;
+
+/* common mixins */
+@mixin transition($time) {
+  -webkit-transition: $time;
+  -moz-transition: $time;
+  -ms-transition: $time;
+  transition: $time;
+}
+
+@mixin vertical-align() {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+
+.rtopVideoPlayerWrapper {
+    position: relative;
+    width: 100%;
+    .rtopVideoPlayer {
+        position: relative;
+        overflow: hidden;
+        .rtopVideoHolder {
+            position: relative;
+            cursor: pointer;
+            height: 0;
+            overflow:hidden;
+            padding-bottom: 56.25%;
+            &:before {
+                position: absolute;
+                content: '';
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                background-color: rgba(0,0,0,.20);
+                background-size: 67px 67px;
+                background-repeat: no-repeat;
+                background-position: center center;
+                opacity: 1;
+                @include transition(.3s all ease-in);
+                cursor: pointer;
+            }
+            &.hasFAIcons {
+                &:after {
+                    @include vertical-align();
+                    position: absolute;
+                    content: "\f144";
+                    opacity: 1;
+                    @include transition(.3s all ease-in);
+                    font-family: "Font Awesome 5 Free";
+                    font-size: 80px;
+                    color: $default;
+                    width: 100%;
+                    text-align: center;
+                    z-index: 4;
+                }
+            }
+            &.vimeoPlayer {
+                iframe {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                }
+            }
+            *::-webkit-media-controls-panel {
+                display: none!important;
+                -webkit-appearance: none !important;
+            }
+            *::--webkit-media-controls-play-button {
+                display: none!important;
+                -webkit-appearance: none !important;
+            }
+            *::-webkit-media-controls-start-playback-button {
+                display: none!important;
+                -webkit-appearance: none !important;
+            }
+            video {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+        }
+        .vidControls {
+            position: absolute;
+            bottom: 0px;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            height: 40px;
+            opacity: 0;
+            -webkit-transform: translate(0%,0);
+            transform: translate(0%,0);
+            @include transition(.3s all);
+            background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%);
+			background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+			background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
+            &.hide {
+                -webkit-transform: translate(0%,40px);
+                transform: translate(0%,40px);
+            }
+            display: -ms-flexbox;
+			display: flex;
+			-ms-flex-wrap: wrap;
+			flex-wrap: wrap;
+            .controlBtn {
+            	position: relative;
+				width: 100%;
+				padding-right: 15px;
+				padding-left: 15px;
+				-ms-flex-preferred-size: 0;
+				flex-basis: 0;
+				-ms-flex-positive: 1;
+				flex-grow: 1;
+				max-width: 100%;
+            	height: 40px;
+            	line-height: 40px;
+            	color:$default;
+            	-webkit-touch-callout: none;
+			    -webkit-user-select: none;
+			    -khtml-user-select: none;
+			    -moz-user-select: none;
+			    -ms-user-select: none;
+			    user-select: none;
+			    cursor: pointer;
+			    z-index: 3;
+            }
+            #playPause {
+            	text-align: center;
+            	max-width: 60px;
+            	span {
+            		&.FAIcon {
+            			font-size: 20px;
+            		}
+            	}
+            }
+            #playPauseHolder {
+                max-width: 60px;
+                cursor: default;
+            }
+            #progressholder {
+                position: relative;
+                margin: 0 20px 0 0;
+                @include transition(.3s all);
+                border-radius: 0;
+                max-width: calc(100% - 140px);
+                z-index: 1;
+            }
+            #progressSpacer {
+                max-width: calc(100% - 140px);
+                cursor:default;
+            }
+            #fullvideoprogress {
+                background: rgba($default, .2);
+                width: 100%;
+                height: 2px;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                position: absolute;
+                margin: auto 0;
+            }
+            #buffered {
+                height: 2px;
+                background: rgba($default,.6);
+                width: 0;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                margin: auto 0;
+                left: 0;
+                border-radius: 4px;
+            }
+            #progress {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                margin: auto 0;
+                left: 0;
+                height: 2px;
+                background: rgba(255,255,255,1);
+                width: 0;
+                border-radius: 4px;
+                border-right: 4px solid $highlight;
+            }
+            #progressholder:hover #progressorb {
+                background-color: rgba($highlight, 1);
+            }
+            #progressorb {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                margin: auto 0;
+                width: 8px;
+                height: 8px;
+                border-radius: 10px;
+                background-color: rgba($highlight, 0);
+                @include transition(.3s background-color ease-in);
+            }
+            #timeholder {
+            	font-size: 13px;
+            	max-width: 120px;
+            	cursor: default;
+            	text-align: center;
+            	@media screen and (max-width: $tablet) {
+            		display:none;
+            	}
+
+            }
+            #soundControl {
+            	max-width: 100px;
+            	@media screen and (max-width: $tablet) {
+            		max-width: 60px;
+            	}
+            	text-align: center;
+            	.muteBtn {
+            		position: relative;
+	            	span {
+	            		&.FAIcon {
+	            			font-size: 20px;
+	            		}
+	            	}
+            	}
+            	.soundBars {
+            		position: relative;
+            		margin-left: 10px;
+            		@media screen and (max-width: $tablet) {
+	            		display:none;
+	            	}
+            		.soundBar {
+            			position: relative;
+            			display: inline-block;
+            			width: 5px;
+            			margin-left: 2px;
+            			&:nth-child(1) {
+            				height: 5px;
+            			}
+            			&:nth-child(2) {
+            				height: 7.5px;
+            			}
+            			&:nth-child(3) {
+            				height: 10px;
+            			}
+            			&:nth-child(4) {
+            				height: 12.5px;
+            			}
+            			background-color: rgba($default, .5);
+            			@include transition(.3s all ease-in);
+            			&:hover {
+            				background-color: rgba($default, 1);
+            			}
+            			&.active {
+            				background-color: rgba($default, 1);
+            				&:hover {
+            					background-color: rgba($default, .5);
+            				}
+            			}
+            		}
+            	}
+            }
+            #fullScreenBtn {
+            	max-width: 60px;
+            	text-align: center;
+            	span {
+            		&.FAIcon {
+            			font-size: 20px;
+            		}
+            	}
+            }
+        }
+        &.playing {
+            .rtopVideoHolder {
+                &:before, &:after {
+                    opacity: 0;
+                }
+            }
+            .vidControls {
+                opacity: 1;
+            }
+        }
+        &.noControls {
+            cursor:default;
+            .rtopVideoHolder {
+                cursor:default;
+                &:before, &:after {
+                   cursor:default;
+                }
+            }
+        }
+        &.closing {
+        	.vidControls {
+                opacity: 0;
+            }
+            .rtopVideoHolder {
+                &:before, &:after{
+                    opacity: 0;
+                }
+            }		
+        }
+        &.finished {
+            .rtopVideoHolder {
+                &.hasFAIcons {
+                    &:after {
+                        @include vertical-align();
+                        opacity: 1;
+                        @include transition(.3s all ease-in);
+                        position: absolute;
+                        content: "\f3e5";
+                        font-family: "Font Awesome 5 Free";
+                        font-weight: 900;
+                        font-size: 80px;
+                        color: $default;
+                        width: 100%;
+                        text-align: center;
+                        z-index: 4;
+                    }
+            }
+            }
+            .vidControls {
+                opacity: 0;
+            }
+        }
+        &.hideOverlay {
+            .rtopVideoHolder {
+            	cursor: none;
+                &:hover:before, &:before, &:hover:after, &:after {
+                    opacity: 0;
+                }
+            }
+        }
+        &.paused {
+            .vidControls {
+                opacity: 1;
+                &.hide {
+                    -webkit-transform: translate(0%,0px);
+                    transform: translate(0%,0px);
+                }
+            }
+            .rtopVideoHolder {
+                &:before, &:after {
+                	opacity: 1;
+                    animation: rtopVideoFadeOut 1.6s forwards;
+                }
+            }
+        }
+    }
+    #closeVideo {
+       	display:none;
+    }
+
+    .rtopVideoPlayer.isFullscreen {
+        background: #000;
+        height: 100%;
+        margin: 0;
+        width: 100%
+        video {
+          height: 100%
+        }
+        .rtopVideoHolder {
+          height: 100%;
+          padding-bottom: 0;
+        }
+      }
+      .rtopVideoPlayer.isFullscreen.fallbackFS {
+        background: #000;
+        border-radius: 0!important;
+        height: 100%;
+        margin: 0;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 10000000
+      }
+}
+
+.rtopVideoPosterImage {
+	position: absolute;
+    cursor: pointer;
+    height: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    overflow:hidden;
+    padding-bottom: 56.25%;
+    &:before {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+  		z-index: 1;
+		background-color: rgba(0,0,0,.20);
+		background-size: 67px 67px;
+		background-repeat: no-repeat;
+		background-position: center center;
+		opacity: 1;
+		@include transition(.3s all ease-in);
+		cursor: pointer;
+    }
+    &.hasFAIcons {
+        &:after {
+            @include vertical-align();
+            position: absolute;
+            content: "\f144";
+            opacity: 1;
+            @include transition(.3s all ease-in);
+            font-family: "Font Awesome 5 Free";
+            font-size: 80px;
+            color: $default;
+            width: 100%;
+            text-align: center;
+            z-index: 4;
+        }
+    }
+    img {
+    	position: absolute;
+    	width: 100%;
+    	height: 100%;
+    	top: 0;
+    	left: 0;
+    }
+}
+
+.rtopVideoModal {
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	display:none;
+	z-index: 999;
+	background-color:rgba(0,0,0,0);
+	&.show {
+		display:block;
+		animation: rtopModalBGColor .3s forwards;
+		.videoModalHolder {
+			animation: rtopModalOpacityColor .3s forwards;
+		}
+	}
+	.videoModalHolder {
+		@include vertical-align();
+		max-width: 800px;
+		margin: auto;
+		padding: 10px;
+		background-color:#000;
+		opacity: 0;
+	}
+	#closeVideo {
+       	position: absolute;
+        top: -50px;
+        display:block;
+        right: -40px;
+        cursor: pointer;
+        span {
+            &.FAIcon {
+            	font-size: 30px;
+            	color:$default;
+            	@include transition(.3s all ease-in);
+            	&:hover {
+            		color:$highlight;
+            	}
+            }
+        }
+    }
+    .rtopVideoPosterImage {
+    	display: none;
+    }
+}
+
+body.noScroll {
+  overflow: hidden;
+  height: 100vh;
+  position: fixed;
+}
+
+@keyframes rtopVideoFadeOut {
+  0% {
+  	opacity: 1;
+  }
+  50% {
+  	opacity: 1;	
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes rtopModalBGColor {
+  0% {
+  	background-color:rgba(0,0,0,0);
+  }
+  100% {
+    background-color:rgba(0,0,0,.8);
+  }
+}
+
+@keyframes rtopModalOpacityColor {
+  0% {
+  	opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
