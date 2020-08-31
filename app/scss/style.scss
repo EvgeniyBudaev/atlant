@@ -40,7 +40,7 @@
     @include f300;
     margin-bottom: 70px;
   }
-  &-link {
+  &-view {
     font-size: 18px;
     @include f400;
     color: $black;
@@ -52,7 +52,7 @@
     border-left: 11px solid $red;
     transition: all .3s;
   }
-  &-link:hover {
+  &-view:hover {
     background: $red;
     color: $white;
   }
