@@ -79,6 +79,10 @@
   }
   .slider__wrapper {
     display: block;
+    padding: 0 15px;
+  }
+  .slider__title {
+    padding: 0 15px;
   }
   .box {
     margin-bottom: 20px;
@@ -93,9 +97,16 @@
   }
   .box7 {
     position: static;
+    width: 100%;
   }
   .box5 {
     height: 140px;
+  }
+  .slider__menu-items {
+    display: block;
+  }
+  .slider__menu-items li {
+    margin-bottom: 25px;
   }
 }
 
@@ -163,6 +174,10 @@
     font-size: 16px;
     line-height: 24px;
   }
+  .box {
+    font-size: 20px;
+    line-height: 30px;
+  }
   .box3 {
     padding: 50px 120px 50px 35px;
   }
@@ -172,10 +187,6 @@
   .slider__title {
     font-size: 26px;
     line-height: 38px;
-  }
-  .box {
-    font-size: 20px;
-    line-height: 30px;
   }
   .box5 {
     padding: 50px 100px 50px 35px;
@@ -215,6 +226,10 @@
   }
   .header__liders-link {
     text-align: center;
+  }
+  .slider__menu-items li a {
+    font-size: 19px;
+    line-height: 28px;
   }
 }
 
