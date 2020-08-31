@@ -79,6 +79,8 @@ gulp.task('export', async function () {
   let BuildFonts = gulp.src('app/fonts/**/*.*').pipe(gulp.dest('build/fonts'))
 
   let BuildImg = gulp.src('app/images/**/*.*').pipe(gulp.dest('build/images'))
+
+  let BuildVideo = gulp.src('app/video/**/*.*').pipe(gulp.dest('build/video'))
 })
 
 gulp.task('watch', function () {
